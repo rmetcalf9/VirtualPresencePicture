@@ -50,5 +50,5 @@ CMD ["/run_app_docker.sh"]
 HEALTHCHECK --interval=30s --timeout=3s \
   CMD curl -f http://127.0.0.1:8098/api/serverinfo/?healthcheck=true || exit 1
 
-##docker build .
+##dockerBuildAndTag.sh
 ##docker run --network pythontestingnetwork --name virtualpresencepicture -p 8098:8098 -e APIAPP_APIURL="${EXTURL}:${EXTPORT}/api" -e APIAPP_APIDOCSURL="${EXTURL}:${EXTPORT}/apidocs" -d metcarob/virtualpresencepicture:latest
