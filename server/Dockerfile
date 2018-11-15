@@ -18,7 +18,7 @@ ENV APIAPP_APIACCESSSECURITY '[]'
 # APIAPP_VERSION is not definable here as it is read from the VERSION file inside the image
 
 EXPOSE 8098
-## ALso need to update nginx config when port is changed
+## Also need to update nginx config when port is changed and healthcheck
 
 RUN apk add --no-cache bash python3 curl python3-dev build-base linux-headers pcre-dev && \
     python3 -m ensurepip && \
@@ -48,7 +48,7 @@ CMD ["/run_app_docker.sh"]
 #  and when it first starts it won't check the health until the interval so I can't have
 #  a higher value without increasing the startup time
 HEALTHCHECK --interval=30s --timeout=3s \
-  CMD curl -f http://127.0.0.1:80/api/serverinfo/?healthcheck=true || exit 1
+  CMD curl -f http://127.0.0.1:8098/api/serverinfo/?healthcheck=true || exit 1
 
 ##docker build .
-##docker run --name virtualpresencepicture -p 80:80 -d metcarob/virtualpresencepicture:latest
+##docker run --name virtualpresencepicture -p 8098:8098 -d metcarob/virtualpresencepicture:latest
