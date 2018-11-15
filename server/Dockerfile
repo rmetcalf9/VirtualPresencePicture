@@ -32,7 +32,7 @@ RUN apk add --no-cache bash python3 curl python3-dev build-base linux-headers pc
     pip3 install uwsgi
 
 COPY ./src ${APP_DIR}
-RUN pip3 install -r ${APP_DIR}/requirments.txt
+RUN pip3 install -r ${APP_DIR}/requirements.txt
 
 COPY ./VERSION /VERSION
 COPY ./run_app_docker.sh /run_app_docker.sh
