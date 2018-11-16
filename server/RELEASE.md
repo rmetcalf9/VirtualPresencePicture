@@ -1,5 +1,7 @@
 # Release process for new container version
 
+Run all the following from the /server directory.
+
 Code change
 continous test works
 
@@ -15,7 +17,7 @@ docker run --network pythontestingnetwork --name virtualpresencepicture -p 8098:
 
 Run tests against the container and make sure it is working
 ```
-docker run --network pythontestingnetwork --mount type=bind,source=$(pwd),target=/ext_volume metcarob/virtualpresencepicturetest:latest nosetests --rednose /ext_volume
+docker run --network pythontestingnetwork --mount type=bind,source=$(pwd),target=/ext_volume metcarob/virtualpresencepicturetest:latest nosetests --rednose /ext_volume/testContainer
 ```
 
 Clean up and push change to git
