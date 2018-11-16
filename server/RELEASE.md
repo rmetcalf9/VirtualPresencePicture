@@ -24,10 +24,9 @@ Clean up and push change to git
 ```
 docker stop virtualpresencepicture
 docker rm virtualpresencepicture
-
-git tag $(cat VERSION)
-git push --tags
 ```
+
+The new version and tag is already created. If the container fails the tests don't go into the docker hub and trigger the build.
 
 Update docker hub version of the image
 ```
