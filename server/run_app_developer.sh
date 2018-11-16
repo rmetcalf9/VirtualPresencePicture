@@ -21,6 +21,9 @@ export APIAPP_PORT=8098
 
 
 export APIAPP_VERSION=
+if [ -f ${APP_DIR}/VERSION ]; then
+  APIAPP_VERSION=${0}-$(cat ${APP_DIR}/VERSION)
+fi
 if [ -f ${APP_DIR}/../VERSION ]; then
   APIAPP_VERSION=${0}-$(cat ${APP_DIR}/../VERSION)
 fi

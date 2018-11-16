@@ -25,13 +25,14 @@ if __name__ == "__main__":
 
   class CustomRequestHandler(WSGIRequestHandler):
     # Stop logging sucessful health checks
+    #Stops flask logging health checks
+    # dosen't work in container with nginx
     def log_request(self, code='-', size='-'):
       ignore = False
       if code > 199:
         if code < 300:
           if "healthcheck=true" in self.requestline:
             ignore = True
-
       if ignore:
         return
       return super(CustomRequestHandler, self).log_request(code,size)
