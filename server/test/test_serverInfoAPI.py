@@ -51,4 +51,10 @@ class test_api(testHelperAPIClient):
     resultJSON = json.loads(result.get_data(as_text=True))
     self.assertJSONStringsEqual(resultJSON, serverInfoWithSamplePictureContent)
     
-    
+  def test_getAddedPictureExpires(self):
+    self.test_getAddPicture()
+    appObj.setTestingDateTime(pytz.timezone('Europe/London').localize(datetime.datetime(2018,11,22,14,36,0,0)))
+    result = self.testClient.get('/api/serverinfo/')
+    self.assertEqual(result.status_code, 200)
+    resultJSON = json.loads(result.get_data(as_text=True))
+    self.assertJSONStringsEqual(resultJSON, serverInfoWithoutAnyPictures)

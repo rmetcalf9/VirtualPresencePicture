@@ -26,6 +26,7 @@ class PictureClass:
     self.appObj = appObj
     self.pictures = dict();
   def getJSON(self):
+    self.removeExpiredPictures()
     return { 
       'Server': { 'Version': self.appObj.version },
       'Pictures': list(map(lambda x: x[1], self.pictures.items()))
@@ -37,7 +38,14 @@ class PictureClass:
       'Contents': content
     }
     return
-
+  def removeExpiredPictures(self):
+    picsToRemove = []
+    for key in self.pictures:
+      if self.pictures[key]['Expires']<self.appObj.getCurDateTime():
+        picsToRemove.append(key)
+    for key in picsToRemove:
+      self.pictures.pop(key, None)
+    
 pictureClass = PictureClass()
 
 def resetData(appObj):
