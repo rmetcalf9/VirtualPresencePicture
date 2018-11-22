@@ -10,7 +10,7 @@ from baseapp_for_restapi_backend_with_swagger import AppObjBaseClass as parAppOb
 from flask_restplus import fields
 import time
 import datetime
-from serverInfoAPI import registerAPI as registerMainApi
+from serverInfoAPI import registerAPI as registerMainApi, resetData as resetMainApi
 
 class appObjClass(parAppObj):
   curDateTimeOverrideForTesting = None
@@ -22,6 +22,7 @@ class appObjClass(parAppObj):
     self.serverStartTime = serverStartTime
     self.version = readFromEnviroment(env, 'APIAPP_VERSION', None, None)
     super(appObjClass, self).init(env)
+    resetMainApi(self)
 
   def initOnce(self):
     super(appObjClass, self).initOnce()
