@@ -27,9 +27,11 @@ steps:
     composition:
       virtualpresencepicture:
         image: ${{build_the_image}}
+        environment:
+          - APIAPP_APIURL=http://virtualpresencepicture:8098/api
+          - APIAPP_APIDOCSURL=http://virtualpresencepicture:8098/apidocs
     composition_candidates:
       virtualpresencepicturetest:
         image: ${{build_the_test_image}}
-        command: nosetests --rednose /ext_volume
+        command: echo "Waiting to allow other container to start..." && sleep 3 && echo "Wait over" && nosetests --rednose /ext_volume
 
-    
