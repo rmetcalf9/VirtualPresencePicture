@@ -24,7 +24,8 @@ steps:
   container_level_tests:
     title: Container level tests
     type: composition
-    composition: 
+    composition:
+      version: '2'
       services:
         virtualpresencepicture:
           image: ${{build_the_image}}
