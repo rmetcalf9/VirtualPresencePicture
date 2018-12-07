@@ -8,3 +8,18 @@ steps:
       - pip3 install -r ./testContainer/requirements.txt
       - nosetests --rednose ./test
 
+  build_the_image:
+    type: build
+    image_name: metcarob/virtualpresencepicture
+    tag: develop
+
+  build_the_test_image:
+    type: build
+    image_name: metcarob/virtualpresencepicturetest
+    tag: develop
+    dockerfile: ./testContainer/Dockerfile
+
+#RUN Container Tests
+
+
+    
