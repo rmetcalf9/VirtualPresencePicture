@@ -1,1 +1,10 @@
-a
+version: '1.0'
+steps:
+  test_all_the_code:
+    image: metcarob/docker-ws-caller:0.2.5
+    working_directory: ${{main_clone}}/server
+    commands:
+      - pip3 install ./src/requirements.txt
+      - pip3 install ./testContainer/requirements.txt
+      - nosetests --rednose ./test
+
