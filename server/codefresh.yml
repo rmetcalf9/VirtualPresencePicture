@@ -23,9 +23,8 @@ steps:
 
   container_level_tests:
     title: Container level tests
-    type: launch-composition
+    type: composition
     composition: 
-      version: '2'
       services:
         virtualpresencepicture:
           image: ${{build_the_image}}
@@ -33,6 +32,5 @@ steps:
       virtualpresencepicturetest:
         image: ${{build_the_test_image}}
       command: nosetests --rednose /ext_volume
-    environment_name: 'comp_virtualpresencepicturetest'
 
     
