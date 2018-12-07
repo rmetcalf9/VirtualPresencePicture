@@ -45,4 +45,7 @@ steps:
     tag: ${{CF_BRANCH_TAG_NORMALIZED}}
     image_name: metcarob/virtualpresencepicture
     registry: dockerhub
-        
+
+#Deploy new container to my website swarm
+
+#Add Kong upstream with 0% to website swarm
