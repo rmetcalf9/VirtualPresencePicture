@@ -34,11 +34,5 @@ step_name:
       image: ${{build_the_test_image}}
     command: nosetests --rednose /ext_volume
   environment_name: 'comp_virtualpresencepicturetest'
-  on_success:
-    ...
-  on_fail:
-    ...
-  on_finish:
-    ...
 
     
