@@ -25,11 +25,13 @@ steps:
     type: composition
     title: Container level tests
     composition:
-      virtualpresencepicture:
-        image: ${{build_the_image}}
-        environment:
-          - APIAPP_APIURL=http://virtualpresencepicture:8098/api
-          - APIAPP_APIDOCSURL=http://virtualpresencepicture:8098/apidocs
+      version: '2'
+      services:
+        virtualpresencepicture:
+          image: ${{build_the_image}}
+          environment:
+            - APIAPP_APIURL=http://virtualpresencepicture:8098/api
+            - APIAPP_APIDOCSURL=http://virtualpresencepicture:8098/apidocs
     composition_candidates:
       virtualpresencepicturetest:
         image: ${{build_the_test_image}}
