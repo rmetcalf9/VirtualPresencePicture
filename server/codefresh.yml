@@ -25,13 +25,11 @@ steps:
     type: composition
     title: Container level tests
     composition:
-      version: '2'
-      services:
-        virtualpresencepicture:
-          image: ${{build_the_image}}
+      virtualpresencepicture:
+        image: ${{build_the_image}}
     composition_candidates:
       virtualpresencepicturetest:
         image: ${{build_the_test_image}}
-      command: nosetests --rednose /ext_volume
+      command: nosetests --rednose /ext_volume/testContainer
 
     
