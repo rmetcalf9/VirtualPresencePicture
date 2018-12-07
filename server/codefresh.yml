@@ -22,8 +22,8 @@ steps:
     dockerfile: ./Dockerfile
 
   container_level_tests:
-    title: Container level tests
     type: composition
+    title: Container level tests
     composition:
       version: '2'
       services:
