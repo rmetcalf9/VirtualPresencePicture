@@ -37,3 +37,12 @@ steps:
         image: ${{build_the_test_image}}
         command: /ext_volume/run_tests_with_wait.sh
 
+  push_to_dockerhub:
+    type: push
+    title: Push to Docker hub
+    description: description
+    candidate: ${{build_the_image}}
+    tag: ${{CF_BRANCH_TAG_NORMALIZED}}
+    image_name: metcarob/virtualpresencepicture
+    registry: dockerhub
+        
