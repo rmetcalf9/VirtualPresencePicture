@@ -33,5 +33,5 @@ steps:
     composition_candidates:
       virtualpresencepicturetest:
         image: ${{build_the_test_image}}
-        command: echo "Waiting to allow other container to start..." && sleep 3 && echo "Wait over" && nosetests --rednose /ext_volume
+        command: /ext_volume/run_tests_with_wait.sh
 
