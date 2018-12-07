@@ -16,7 +16,7 @@ RUN apk add --no-cache bash python3 curl python3-dev build-base linux-headers pc
     pip3 install --upgrade pip && \
     pip3 install -r requirements.txt
 
-COPY . /ext_volume
+COPY /ext_volume
 
 ##docker build . -t metcarob/virtualpresencepicturetest:latest
 ##docker run --network pythontestingnetwork --mount type=bind,source=$(pwd),target=/ext_volume metcarob/virtualpresencepicturetest:latest nosetests --rednose /ext_volume
