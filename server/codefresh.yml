@@ -30,6 +30,6 @@ steps:
     composition_candidates:
       virtualpresencepicturetest:
         image: ${{build_the_test_image}}
-      command: nosetests --rednose /ext_volume/testContainer
+        command: nosetests --rednose /ext_volume/testContainer
 
     
