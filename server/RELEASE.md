@@ -4,11 +4,11 @@
  - Commit and push all changes (to master branch)
  - run codefreshRelease.sh this will:
    - Increment version
-   - tag git repo
+   - tag git repo with that version number
    - push repo and tags to git
    - codefresh will see new tag and start pipeline
    - Builds an image, tests it and pushes it to dockerhub
- - Deploy new container to metcarob.com
+ - Deploy new container to metcarob.com with name virtualpresencepicture_VERSION
  - Add Kong upstream for new container with 0%
  - Switch kong test endpoint to new container (Any old endpoint removed)
  - make sure test endpoint is working
