@@ -9,11 +9,13 @@ steps:
       - nosetests --rednose ./test
 
   build_the_image:
+    working_directory: ${{main_clone}}/server
     type: build
     image_name: metcarob/virtualpresencepicture
     tag: develop
 
   build_the_test_image:
+    working_directory: ${{main_clone}}/server
     type: build
     image_name: metcarob/virtualpresencepicturetest
     tag: develop
