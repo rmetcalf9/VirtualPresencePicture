@@ -47,5 +47,16 @@ steps:
     registry: dockerhub
 
 #Deploy new container to my website swarm
+deploy_to_swarm:
+    image: codefresh/remote-docker
+    working_directory: ${{main_clone}}
+    commands:
+      - rdocker ${{RDOCKER_HOST}} docker run --network TODO --name virtualpresencepicture_${{CF_BRANCH_TAG_NORMALIZED}} -p 8098:8098 -e APIAPP_APIURL="https://api.metcarob.com/virtualpresencepicture/api" -e APIAPP_APIDOCSURL="https://api.metcarob.com/virtualpresencepicture/apidocs" -d metcarob/virtualpresencepicture:${{CF_BRANCH_TAG_NORMALIZED}}
+    environment:
+      - SSH_KEY=${{SSH_KEY}}
+    when:
+      branch:
+        only:
+          - master
 
 #Add Kong upstream with 0% to website swarm
