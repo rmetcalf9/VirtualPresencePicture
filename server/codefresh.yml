@@ -15,13 +15,30 @@ steps:
     tag: develop
 
   build_the_test_image:
-    working_directory: ${{main_clone}}/server
+    working_directory: ${{main_clone}}/server/testContainer
     type: build
     image_name: metcarob/virtualpresencepicturetest
     tag: develop
-    dockerfile: ./testContainer/Dockerfile
+    dockerfile: ./Dockerfile
 
-#RUN Container Tests
-
+step_name:
+  title: Container level tests
+  type: launch-composition
+  composition: 
+    version: '2'
+    services:
+      virtualpresencepicture:
+        image: ${{build_the_image}}
+  composition_candidate:
+    virtualpresencepicturetest:
+      image: ${{build_the_test_image}}
+    command: nosetests --rednose /ext_volume
+  environment_name: 'comp_virtualpresencepicturetest'
+  on_success:
+    ...
+  on_fail:
+    ...
+  on_finish:
+    ...
 
     

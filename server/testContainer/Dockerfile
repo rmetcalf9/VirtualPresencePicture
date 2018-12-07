@@ -8,7 +8,6 @@ MAINTAINER Robert Metcalf
 
 COPY ./requirements.txt /requirements.txt
 
-
 RUN apk add --no-cache bash python3 curl python3-dev build-base linux-headers pcre-dev && \
     python3 -m ensurepip && \
     rm -r /usr/lib/python*/ensurepip && \
@@ -17,9 +16,7 @@ RUN apk add --no-cache bash python3 curl python3-dev build-base linux-headers pc
     pip3 install --upgrade pip && \
     pip3 install -r requirements.txt
 
-#    pip3 install nose && \
-#    pip3 install rednose && \
-#    pip3 install requests
+COPY . /ext_volume
 
 ##docker build . -t metcarob/virtualpresencepicturetest:latest
 ##docker run --network pythontestingnetwork --mount type=bind,source=$(pwd),target=/ext_volume metcarob/virtualpresencepicturetest:latest nosetests --rednose /ext_volume
