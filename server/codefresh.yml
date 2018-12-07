@@ -29,7 +29,7 @@ steps:
       services:
         virtualpresencepicture:
           image: ${{build_the_image}}
-    composition_candidate:
+    composition_candidates:
       virtualpresencepicturetest:
         image: ${{build_the_test_image}}
       command: nosetests --rednose /ext_volume
