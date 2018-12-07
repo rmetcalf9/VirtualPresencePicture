@@ -12,7 +12,7 @@ steps:
     working_directory: ${{main_clone}}/server
     type: build
     image_name: metcarob/virtualpresencepicture
-    tag: develop
+    tag: ${{CF_BRANCH_TAG_NORMALIZED}}
 
   build_the_test_image:
     working_directory: ${{main_clone}}/server/testContainer
