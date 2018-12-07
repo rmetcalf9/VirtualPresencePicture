@@ -21,18 +21,18 @@ steps:
     tag: develop
     dockerfile: ./Dockerfile
 
-step_name:
-  title: Container level tests
-  type: launch-composition
-  composition: 
-    version: '2'
-    services:
-      virtualpresencepicture:
-        image: ${{build_the_image}}
-  composition_candidate:
-    virtualpresencepicturetest:
-      image: ${{build_the_test_image}}
-    command: nosetests --rednose /ext_volume
-  environment_name: 'comp_virtualpresencepicturetest'
+  container_level_tests:
+    title: Container level tests
+    type: launch-composition
+    composition: 
+      version: '2'
+      services:
+        virtualpresencepicture:
+          image: ${{build_the_image}}
+    composition_candidate:
+      virtualpresencepicturetest:
+        image: ${{build_the_test_image}}
+      command: nosetests --rednose /ext_volume
+    environment_name: 'comp_virtualpresencepicturetest'
 
     
