@@ -49,10 +49,10 @@ steps:
   #Deploy new container to my website swarm
   #https://codefresh.io/docs/docs/deploy-your-containers/docker-swarm/#deploy-to-docker-swarm-using-the-pipelines-ui-deploy-step
   deploy_to_metcarob_swarm:
-      image: codefresh/remote-docker
+      image: kroniak/ssh-client
       working_directory: ${{main_clone}}
       commands:
-        - rdocker ${{RDOCKER_HOST}} docker run --network main_net --name virtualpresencepicture_${{CF_BRANCH_TAG_NORMALIZED}} -p 8098:8098 -e APIAPP_APIURL="https://api.metcarob.com/virtualpresencepicture/api" -e APIAPP_APIDOCSURL="https://api.metcarob.com/virtualpresencepicture/apidocs" -d metcarob/virtualpresencepicture:${{CF_BRANCH_TAG_NORMALIZED}}
+        - echo ${SSH_KEY} | tr ',' '\n' | ssh -i /dev/stdin -t ${{RDOCKER_HOST}} -p ${{RDOCKER_SSH_PORT}} docker run --network main_net --name virtualpresencepicture_${{CF_BRANCH_TAG_NORMALIZED}} -p 8098:8098 -e APIAPP_APIURL="https://api.metcarob.com/virtualpresencepicture/api" -e APIAPP_APIDOCSURL="https://api.metcarob.com/virtualpresencepicture/apidocs" -d metcarob/virtualpresencepicture:${{CF_BRANCH_TAG_NORMALIZED}}
       environment:
         - SSH_KEY=${{SSH_KEY}}
 
