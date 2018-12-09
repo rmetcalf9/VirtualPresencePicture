@@ -61,9 +61,10 @@ steps:
       image: codefresh/remote-docker
       working_directory: ${{main_clone}}
       commands:
+        - export SSH_KEY=$(echo ${SSH_KEY_COMMAS} | tr ',' '\n')
         - rdocker ${{RDOCKER_HOST}} docker ps
       environment:
-        - SSH_KEY=${{SSH_KEY}}
+        - SSH_KEY_COMMAS=${{SSH_KEY}}
         - SSH_PORT=${{SSH_PORT}}
 
 
