@@ -63,7 +63,7 @@ steps:
       commands:
         - export SSH_KEY=$(echo ${SSH_KEY_COMMAS}) \&\& rdocker ${{RDOCKER_HOST}} docker ps
       environment:
-        - SSH_KEY_COMMAS=${{SSH_KEY}}
+        - SSH_KEY_COMMAS=${{SSH_KEY_COMMAS}}
         - SSH_PORT=${{SSH_PORT}}
         - SPLIT_CHAR=${{SPLIT_CHAR}}
 
