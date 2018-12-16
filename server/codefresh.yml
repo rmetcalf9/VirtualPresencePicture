@@ -74,20 +74,19 @@ steps:
 
   # Connect test endpoint to new container
   connect_test_endpoint:
-      image: codefresh/remote-docker
-      working_directory: ${{main_clone}}
-      commands:
-        - rdocker ${{RDOCKER_HOST}} docker run \
-            --rm
-            --network main_net \
-            metcarob/docker-ws-caller:0.3.0 \
-            kong_test \
-            http://kong:8001
-      environment:
-        - SSH_KEY=${{SSH_KEY_COMMAS}}
-        - SSH_PORT=${{SSH_PORT}}
-        - SPLIT_CHAR=${{SPLIT_CHAR}}
-
+    image: codefresh/remote-docker
+    working_directory: ${{main_clone}}
+    commands:
+      - rdocker ${{RDOCKER_HOST}} docker run \
+        --rm \
+        --network main_net \
+        metcarob/docker-ws-caller:0.3.0 \
+        kong_test \
+        http://kong:8001
+    environment:
+      - SSH_KEY=${{SSH_KEY_COMMAS}}
+      - SSH_PORT=${{SSH_PORT}}
+      - SPLIT_CHAR=${{SPLIT_CHAR}}
 
   #    image: metcarob/docker-ws-caller:0.3.0
   #    working_directory: ${{main_clone}}/server
