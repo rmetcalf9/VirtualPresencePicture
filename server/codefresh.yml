@@ -12,7 +12,7 @@ steps:
   #This process will not remove containers as they are superceeded. This is to allow a manual fallback process
 
   test_all_the_code:
-    image: metcarob/docker-ws-caller:0.2.5
+    image: metcarob/docker-ws-caller:0.3.0
     working_directory: ${{main_clone}}/server
     commands:
       - pip3 install -r ./src/requirements.txt
@@ -72,8 +72,31 @@ steps:
         - SSH_PORT=${{SSH_PORT}}
         - SPLIT_CHAR=${{SPLIT_CHAR}}
 
+  # Connect test endpoint to new container
+  connect_test_endpoint:
+      image: codefresh/remote-docker
+      working_directory: ${{main_clone}}
+      commands:
+        - rdocker ${{RDOCKER_HOST}} docker run \
+            --rm
+            --network main_net \
+            -d metcarob/docker-ws-caller:0.3.0 \
+            kong_test \
+            http://kong:8001
+      environment:
+        - SSH_KEY=${{SSH_KEY_COMMAS}}
+        - SSH_PORT=${{SSH_PORT}}
+        - SPLIT_CHAR=${{SPLIT_CHAR}}
 
-# Connect test endpoint to new container
+
+  #    image: metcarob/docker-ws-caller:0.3.0
+  #    working_directory: ${{main_clone}}/server
+  #    commands:
+  #      - kong_install_service_and_route http://virtualpresencepicture_${{CF_BRANCH_TAG_NORMALIZED}}:8098 virtualpresencepicture_TEST http www.host.com 80 / http api.metcarob.com /virtualpresencepicture/test/V0 GET null null true
+  #    #environment:
+  #    #  - SSH_KEY=${{SSH_KEY_COMMAS}}
+  #    #  - SSH_PORT=${{SSH_PORT}}
+  #    #  - SPLIT_CHAR=${{SPLIT_CHAR}}
 
 # Test test endpoint including version test
 
