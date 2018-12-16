@@ -1,5 +1,15 @@
 version: '1.0'
 steps:
+
+  #This file deploys a new version of the API to production.
+  #If version is x.y.z (xy and z are numbers)
+  # x is the major version
+  #API URL's
+  #https://api.metcarob.com/virtualpresencepicture/test/V{MAJOR_VERSION} = Test endpoint
+  #https://api.metcarob.com/virtualpresencepicture/V{MAJOR_VERSION} = Live endpoint
+  #
+  #This process will not remove containers as they are superceeded. This is to allow a manual fallback process
+
   test_all_the_code:
     image: metcarob/docker-ws-caller:0.2.5
     working_directory: ${{main_clone}}/server
@@ -46,15 +56,6 @@ steps:
     image_name: metcarob/virtualpresencepicture
     registry: dockerhub
 
-#  deploy_to_metcarob_swarm:
-#      image: codefresh/remote-docker
-#      working_directory: ${{main_clone}}
-#      commands:
-#        - rdocker ${{RDOCKER_HOST}} docker run --network main_net --name virtualpresencepicture_${{CF_BRANCH_TAG_NORMALIZED}} -p 8098:8098 -e APIAPP_APIURL="https://api.metcarob.com/virtualpresencepicture/api" -e APIAPP_APIDOCSURL="https://api.metcarob.com/virtualpresencepicture/apidocs" -d metcarob/virtualpresencepicture:${{CF_BRANCH_TAG_NORMALIZED}}
-#      environment:
-#        - SSH_KEY=${{SSH_KEY}}
-#        - SSH_PORT=${{SSH_PORT}}
-
   #Deploy new container to my website swarm
   #https://codefresh.io/docs/docs/deploy-your-containers/docker-swarm/#deploy-to-docker-swarm-using-the-pipelines-ui-deploy-step
   deploy_to_metcarob_swarm:
@@ -69,4 +70,15 @@ steps:
         - SPLIT_CHAR=${{SPLIT_CHAR}}
 
 
-#Add Kong upstream with 0% to website swarm
+# Connect test endpoint to new container
+
+# Test test endpoint including version test
+
+# If main service dosen't exist create it
+
+# Add new container as upstream to main service
+
+# Move main service so it is 100% pointing at new service
+
+# Possible future steps - test main endpoint and fail back if it is not working
+
