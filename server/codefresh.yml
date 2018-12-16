@@ -47,6 +47,8 @@ steps:
       virtualpresencepicturetest:
         image: ${{build_the_test_image}}
         command: /ext_volume/run_tests_with_wait.sh
+        enviroment:
+          - EXPECTED_CONTAINER_VERSION=${{CF_BRANCH_TAG_NORMALIZED}}
 
   push_to_dockerhub:
     type: push
