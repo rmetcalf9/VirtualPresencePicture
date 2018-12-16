@@ -80,7 +80,7 @@ steps:
         - rdocker ${{RDOCKER_HOST}} docker run \
             --rm
             --network main_net \
-            -d metcarob/docker-ws-caller:0.3.0 \
+            metcarob/docker-ws-caller:0.3.0 \
             kong_test \
             http://kong:8001
       environment:
