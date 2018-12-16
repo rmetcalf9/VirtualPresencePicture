@@ -59,4 +59,4 @@ class test_api(testHelperAPIClient):
     resultJSON = json.loads(result.get_data(as_text=True))
     self.assertJSONStringsEqual(resultJSON, serverInfoWithoutAnyPictures)
 
- 
+

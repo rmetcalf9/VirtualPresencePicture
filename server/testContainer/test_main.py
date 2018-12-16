@@ -2,6 +2,7 @@
 import unittest
 import requests
 import os
+import json
 
 baseURL="http://virtualpresencepicture:8098"
 
@@ -17,5 +18,4 @@ class test_containerAPI(unittest.TestCase):
     result = requests.get(baseURL + "/api/serverinfo/")
     self.assertEqual(result.status_code, 200)
     resultJSON = json.loads(result.get_data(as_text=True))
-    self.assertJSONStringsEqual(resultJSON['Server']['Version'], os.environ['EXPECTED_CONTAINER_VERSION'])
-
+    self.assertEqual(resultJSON['Server']['Version'], os.environ['EXPECTED_CONTAINER_VERSION'])
