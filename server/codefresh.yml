@@ -77,12 +77,7 @@ steps:
     image: codefresh/remote-docker
     working_directory: ${{main_clone}}
     commands:
-      - rdocker ${{RDOCKER_HOST}} docker run
-        --rm
-        --network main_net
-        metcarob/docker-ws-caller:0.3.0
-        kong_test
-        http://kong:8001
+      - rdocker ${{RDOCKER_HOST}} docker run --rm --network main_net metcarob/docker-ws-caller:0.3.0 kong_test http://kong:8001
     environment:
       - SSH_KEY=${{SSH_KEY_COMMAS}}
       - SSH_PORT=${{SSH_PORT}}
