@@ -82,7 +82,7 @@ steps:
         metcarob/docker-ws-caller:0.3.2
         http://kong:8001
         virtualpresencepicture_TEST http virtualpresencepicture_${{CF_BRANCH_TAG_NORMALIZED}} 8098 /
-        http api.metcarob.com /virtualpresencepicture/test/v0 GET null null true
+        https api.metcarob.com /virtualpresencepicture/test/v${VERSION%%.*} GET null null true
     environment:
       - SSH_KEY=${{SSH_KEY_COMMAS}}
       - SSH_PORT=${{SSH_PORT}}
