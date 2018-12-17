@@ -65,12 +65,12 @@ steps:
       image: codefresh/remote-docker
       working_directory: ${{main_clone}}
       commands:
-        - rdocker ${{RDOCKER_HOST}} docker run --network main_net --name virtualpresencepicture_${{CF_BRANCH_TAG_NORMALIZED}} -e APIAPP_APIURL="https://api.metcarob.com/virtualpresencepicture/v0/api" -e APIAPP_APIDOCSURL="https://api.metcarob.com/virtualpresencepicture/v0/apidocs" -d metcarob/virtualpresencepicture:${{CF_BRANCH_TAG_NORMALIZED}}
-        #- rdocker ${{RDOCKER_HOST}} docker ps
+        - rdocker ${{RDOCKER_HOST}} docker run --network main_net --name virtualpresencepicture_${{CF_BRANCH_TAG_NORMALIZED}} -e APIAPP_APIURL="https://api.metcarob.com/virtualpresencepicture/v${VERSION%%.*}/api" -e APIAPP_APIDOCSURL="https://api.metcarob.com/virtualpresencepicture/v${VERSION%%.*}/apidocs" -d metcarob/virtualpresencepicture:${{CF_BRANCH_TAG_NORMALIZED}}
       environment:
         - SSH_KEY=${{SSH_KEY_COMMAS}}
         - SSH_PORT=${{SSH_PORT}}
         - SPLIT_CHAR=${{SPLIT_CHAR}}
+        - VERSION=${{CF_BRANCH_TAG_NORMALIZED}}
 
   # Connect test endpoint to new container
   connect_test_endpoint:
@@ -88,30 +88,6 @@ steps:
       - SSH_PORT=${{SSH_PORT}}
       - SPLIT_CHAR=${{SPLIT_CHAR}}
       - VERSION=${{CF_BRANCH_TAG_NORMALIZED}}
-
-      #${VERSION%%.*}
-      
-      #http://127.0.0.1:8001 \
-#serv_name \
-#http \
-#www.host.com \
-#80 \
-#/ \
-#http \
-#route.host.com \
-#/ppp \
-#GET \
-#null \
-#null
-      
-  #    image: metcarob/docker-ws-caller:0.3.0
-  #    working_directory: ${{main_clone}}/server
-  #    commands:
-  #      - kong_install_service_and_route http://virtualpresencepicture_${{CF_BRANCH_TAG_NORMALIZED}}:8098 virtualpresencepicture_TEST http www.host.com 80 / http api.metcarob.com /virtualpresencepicture/test/V0 GET null null true
-  #    #environment:
-  #    #  - SSH_KEY=${{SSH_KEY_COMMAS}}
-  #    #  - SSH_PORT=${{SSH_PORT}}
-  #    #  - SPLIT_CHAR=${{SPLIT_CHAR}}
 
 # Test test endpoint including version test
 
