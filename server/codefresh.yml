@@ -92,7 +92,9 @@ steps:
   # Test test endpoint including version test
   run_container_tests_against_test_endpoint:
     image: ${{build_the_test_image}}
-    command: /ext_volume/run_tests_with_wait.sh
+    working_directory: ${{main_clone}}/server
+    commands:
+      - nosetests --rednose /ext_volume
     environment:
       - EXPECTED_CONTAINER_VERSION=${{CF_BRANCH_TAG_NORMALIZED}}
       - BASEURL_TO_TEST=https://api.metcarob.com/virtualpresencepicture/test/v0
