@@ -89,7 +89,13 @@ steps:
       - SPLIT_CHAR=${{SPLIT_CHAR}}
       - VERSION=${{CF_BRANCH_TAG_NORMALIZED}}
 
-# Test test endpoint including version test
+  # Test test endpoint including version test
+  run_container_tests_against_test_endpoint
+    image: ${{build_the_test_image}}
+    command: /ext_volume/run_tests_with_wait.sh
+    environment:
+      - EXPECTED_CONTAINER_VERSION=${{CF_BRANCH_TAG_NORMALIZED}}
+      - BASEURL_TO_TEST=https://api.metcarob.com/virtualpresencepicture/test/v0
 
 # If main service dosen't exist create it
 

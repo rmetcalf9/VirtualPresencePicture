@@ -5,6 +5,8 @@ import os
 import json
 
 baseURL="http://virtualpresencepicture:8098"
+if ('BASEURL_TO_TEST' in os.environ):
+  baseURL=os.environ['BASEURL_TO_TEST']
 
 class test_containerAPI(unittest.TestCase):
 #Actual tests below
