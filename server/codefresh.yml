@@ -82,7 +82,7 @@ steps:
         metcarob/docker-ws-caller:0.3.3
         http://kong:8001
         virtualpresencepicture_TEST_v${VERSION%%.*} http virtualpresencepicture_${{CF_BRANCH_TAG_NORMALIZED}} 8098 /
-        https api.metcarob.com /virtualpresencepicture/test/v${VERSION%%.*} GET null null true
+        https api.metcarob.com /virtualpresencepicture/test/v${VERSION%%.*} null null null true
     environment:
       - SSH_KEY=${{SSH_KEY_COMMAS}}
       - SSH_PORT=${{SSH_PORT}}
@@ -106,8 +106,8 @@ steps:
       - rdocker ${{RDOCKER_HOST}} docker run --rm -it --network main_net --entrypoint kong_install_service_and_route 
         metcarob/docker-ws-caller:0.3.3
         http://kong:8001
-        virtualpresencepicture_v${VERSION%%.*} http virtualpresencepicture 8098 /
-        https api.metcarob.com /virtualpresencepicture/v${VERSION%%.*} GET null null true
+        virtualpresencepicture_v${VERSION%%.*} http virtualpresencepicture_v${VERSION%%.*} 8098 /
+        https api.metcarob.com /virtualpresencepicture/v${VERSION%%.*} null null null true
     environment:
       - SSH_KEY=${{SSH_KEY_COMMAS}}
       - SSH_PORT=${{SSH_PORT}}
@@ -115,8 +115,8 @@ steps:
       - VERSION=${{CF_BRANCH_TAG_NORMALIZED}}
 
 #TODO configure Upstream
-#  upstream : http://virtualpresencepicture_${{CF_BRANCH_TAG_NORMALIZED}}:8098
-#    make it 100%
+#  upstream target: 	virtualpresencepicture_${{CF_BRANCH_TAG_NORMALIZED}}:8098
+#          weight: 100
 #    make all others 0%
       
 # Possible future steps - test main endpoint and fail back if it is not working
