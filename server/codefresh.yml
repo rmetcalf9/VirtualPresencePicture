@@ -90,7 +90,7 @@ steps:
       - VERSION=${{CF_BRANCH_TAG_NORMALIZED}}
 
   # Test test endpoint including version test
-  run_container_tests_against_test_endpoint
+  run_container_tests_against_test_endpoint:
     image: ${{build_the_test_image}}
     command: /ext_volume/run_tests_with_wait.sh
     environment:
