@@ -81,7 +81,7 @@ steps:
       - rdocker ${{RDOCKER_HOST}} docker run --rm -it --network main_net --entrypoint kong_install_service_and_route 
         metcarob/docker-ws-caller:0.3.3
         http://kong:8001
-        virtualpresencepicture_TEST http virtualpresencepicture_${{CF_BRANCH_TAG_NORMALIZED}} 8098 /
+        virtualpresencepicture_TEST_v${VERSION%%.*} http virtualpresencepicture_${{CF_BRANCH_TAG_NORMALIZED}} 8098 /
         https api.metcarob.com /virtualpresencepicture/test/v${VERSION%%.*} GET null null true
     environment:
       - SSH_KEY=${{SSH_KEY_COMMAS}}
