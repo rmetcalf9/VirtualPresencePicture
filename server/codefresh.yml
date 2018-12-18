@@ -99,11 +99,12 @@ steps:
       - EXPECTED_CONTAINER_VERSION=${{CF_BRANCH_TAG_NORMALIZED}}
       - BASEURL_TO_TEST=https://api.metcarob.com/virtualpresencepicture/test/v0
 
-# If main service dosen't exist create it
-
-# Add new container as upstream to main service
-
-# Move main service so it is 100% pointing at new service
-
+# Connect to main service
+#  We need route - https://api.metcarob.com /virtualpresencepicture/v${VERSION%%.*}
+#  Service name - virtualpresencepicture_VXX pointing to : http://Useupstream
+#  upstream : http://virtualpresencepicture_${{CF_BRANCH_TAG_NORMALIZED}}:8098
+#    make it 100%
+#    make all others 0%
+      
 # Possible future steps - test main endpoint and fail back if it is not working
 
