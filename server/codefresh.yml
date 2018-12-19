@@ -12,7 +12,7 @@ steps:
   #This process will not remove containers as they are superceeded. This is to allow a manual fallback process
 
   test_all_the_code:
-    image: metcarob/docker-ws-caller:0.3.3
+    image: metcarob/docker-ws-caller:0.3.4
     working_directory: ${{main_clone}}/server
     commands:
       - pip3 install -r ./src/requirements.txt
@@ -79,7 +79,7 @@ steps:
     commands:
 #      - rdocker ${{RDOCKER_HOST}} docker run --rm -it --network main_net --entrypoint kong_test metcarob/docker-ws-caller:0.3.0 http://kong:8001
       - rdocker ${{RDOCKER_HOST}} docker run --rm -it --network main_net --entrypoint kong_install_service_and_route 
-        metcarob/docker-ws-caller:0.3.3
+        metcarob/docker-ws-caller:0.3.4
         http://kong:8001
         virtualpresencepicture_TEST_v${VERSION%%.*} http virtualpresencepicture_${{CF_BRANCH_TAG_NORMALIZED}} 8098 /
         https api.metcarob.com /virtualpresencepicture/test/v${VERSION%%.*} null null null true
@@ -104,7 +104,7 @@ steps:
     working_directory: ${{main_clone}}
     commands:
       - rdocker ${{RDOCKER_HOST}} docker run --rm -it --network main_net --entrypoint kong_install_service_and_route 
-        metcarob/docker-ws-caller:0.3.3
+        metcarob/docker-ws-caller:0.3.4
         http://kong:8001
         virtualpresencepicture_v${VERSION%%.*} http virtualpresencepicture_v${VERSION%%.*} 8098 /
         https api.metcarob.com /virtualpresencepicture/v${VERSION%%.*} null null null true
